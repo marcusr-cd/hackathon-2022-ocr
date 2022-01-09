@@ -1,6 +1,6 @@
 import numpy as np
 from flask import Flask, request
-import pytesseract, cv2, cv2
+import pytesseract, cv2
 from pytesseract.pytesseract import Output
 
 app = Flask(__name__)

@@ -1,3 +1,3 @@
-pip install pysseract
+pip install pytesseract
 pip install opencv-python
 pip install flask
