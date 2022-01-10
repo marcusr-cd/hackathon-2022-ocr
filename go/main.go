@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"image/png"
 
 	"github.com/otiai10/gosseract"
@@ -46,7 +47,11 @@ func postProcess(img gocv.Mat) (string, error) {
 func main() {
 	img := gocv.IMRead("../images/id1.jpg", gocv.IMReadColor)
 	threshImg := preProcess(img)
-	text, _ := postProcess(threshImg)
+	text, err := postProcess(threshImg)
+
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	println(text)
 }

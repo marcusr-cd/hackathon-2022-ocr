@@ -17,7 +17,7 @@ def preprocess(img):
   return otsu
 
 def postprocess(image):
-  config_tesseract = '--tessdata-dir tessdata'
+  config_tesseract = '--tessdata-dir ../tessdata'
   result = pytesseract.image_to_data(image, lang='eng', config=config_tesseract, output_type=Output.DICT)
   text = ''
 
