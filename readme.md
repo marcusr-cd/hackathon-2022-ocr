@@ -11,12 +11,12 @@ brew install tesseract opencv node python3 go
 
 ### Linux
 
-#### Manjaro/Arch Linux based
+#### Manjaro / Arch Linux based
 ```bash
 sudo pacman -S tesseract opencv nodejs python3 go hdf5 vtk jsoncpp pugixml glew fmt
 ```
 
-#### Debian based
+#### Debian / Ubuntu based
 ```bash
 sudo apt install tesseract opencv nodejs python3 golang-go
 ```
