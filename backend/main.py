@@ -19,7 +19,7 @@ def preprocess(img):
 def postprocess(image):
   config_tesseract = '--tessdata-dir ../tessdata'
   result = pytesseract.image_to_data(image, lang='eng', config=config_tesseract, output_type=Output.DICT)
-  text = ''
+  text = pytesseract.image_to_string(image, lang='eng', config=config_tesseract, output_type=Output.DICT)
 
   for i in range(0, len(result['text'])):
     # confidence = int(result['conf'][i])
@@ -33,7 +33,7 @@ def postprocess(image):
       'address': result['text'][63] + ' ' + result['text'][64]+ ' ' + result['text'][65]+ ' ' + result['text'][67]+ ' ' + result['text'][68]+ ' ' + result['text'][69]+ ' ' + result['text'][70],
     }
 
-  return response
+  return text
 
 
 @app.route("/", methods=['POST'])
