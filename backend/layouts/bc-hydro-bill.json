@@ -1,0 +1,36 @@
+{
+  "validation": {
+    "top": 69,
+    "from": 115,
+    "to": 179,
+    "text": "BC HYDRO"
+  },
+  "fields": {
+    "name": [
+      {
+        "top": 93,
+        "from": 387,
+        "to": 900 
+      }
+    ],
+    "address": [
+      {
+        "top": 120,
+        "from": 387,
+        "to": 900
+      },
+      {
+        "top": 147,
+        "from": 387,
+        "to": 900
+      }
+    ],
+    "billing_date": [
+      {
+        "top": 93,
+        "from": 1356,
+        "to": 1431
+      }
+    ]
+  }
+}

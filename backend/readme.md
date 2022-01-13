@@ -1,3 +1,3 @@
-pip install pytesseract
-pip install opencv-python
-pip install flask
+```bash
+pip install pytesseract opencv-python flask flask-cors pdf2image
+```
