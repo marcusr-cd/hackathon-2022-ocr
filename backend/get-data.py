@@ -3,7 +3,6 @@
 from flask import Flask, request
 import pytesseract
 from pytesseract.pytesseract import Output
-from pdf2image import convert_from_bytes
 import json
 import preprocess
 
