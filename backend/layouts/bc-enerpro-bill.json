@@ -1,0 +1,36 @@
+{
+  "validation": {
+    "top": 1757,
+    "from": 239,
+    "to": 428,
+    "text": "ENERPRO SYSTEMS CORP"
+  },
+  "fields": {
+    "name": [
+      {
+        "top": 335,
+        "from": 98,
+        "to": 500 
+      }
+    ],
+    "address": [
+      {
+        "top": 361,
+        "from": 97,
+        "to": 500
+      },
+      {
+        "top": 387,
+        "from": 97,
+        "to": 500
+      }
+    ],
+    "billing_date": [
+      {
+        "top": 335,
+        "from": 713,
+        "to": 900
+      }
+    ]
+  }
+}
