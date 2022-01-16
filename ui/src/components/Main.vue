@@ -1,70 +1,75 @@
 <template>
-  <div class="container">
-    <h1>Spring OCR</h1>
-    <h1>Upload a file to read its contents!</h1>
-    <input
-      type="file"
-      id="file"
-      accept="image/png, image/jpeg"
-      @change="preloadFile"
-    />
-    <button v-if="file" class="loadButton" @click="readImage">
-      Read from image!
-    </button>
+  <div class="main">
+    <h1 class="text-4xl font-bold">Spring OCR POC</h1>
+    <div v-if="step === 1">
+      <BasicData :user-data="userData" @submit="saveForm" />
+    </div>
+    <div v-if="step === 2">
+      <h2 class="text-2xl font-bold mb-10">Upload your documents</h2>
+      <div class="main-steps mx-auto mb-10">
+        <Step docName="Proof of Address" />
+      </div>
+    </div>
+    <br />
 
-    <div class="loading" v-if="flooredProgress > 0">
+    <!-- <input type="text" v-model="input1" />
+    <input type="text" v-model="input2" /> -->
+    <!-- <span>{{ inputSimilarity }}</span> -->
+
+    <!-- <div class="loading" v-if="flooredProgress > 0">
       {{ status }}
       <br />
       Progress: {{ flooredProgress }}%
-    </div>
-
-    <div v-if="imageText">
-      <h2>Full text:</h2>
-      <p class="imageContent">{{ imageText }}</p>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
+import BasicData from "./BasicData.vue";
+import Step from "./Step.vue";
+// import similarity from "../mixins/stringHelpers";
 
 export default {
   name: "Main",
 
+  components: { Step, BasicData },
+
   data() {
     return {
-      file: undefined,
-      status: "",
-      progress: 0,
-      imageText: "",
+      step: 1,
+      userData: undefined,
+      documents: {
+        poa: undefined,
+      },
     };
   },
 
   computed: {
-    flooredProgress() {
-      return Math.floor(this.progress * 100);
-    },
+    // flooredProgress() {
+    //   return Math.floor(this.progress * 100);
+    // },
+    // inputSimilarity() {
+    //   return similarity(this.input1, this.input2);
+    // },
   },
 
   methods: {
+    nextStep() {
+      this.step++;
+    },
 
+    saveForm(data) {
+      this.userData = data
+      this.nextStep()
+    },
   },
 };
 </script>
 
-<style scoped>
-.container {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 800px;
-}
-
-.loadButton {
-  margin: 35px 0;
-}
-
-.imageContent {
-  white-space: pre-line;
+<style scoped lang="scss">
+.main {
+  &-steps {
+    @apply flex items-center flex-col my-5 mx-auto;
+  }
 }
 </style>
