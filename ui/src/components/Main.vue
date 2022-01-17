@@ -7,7 +7,7 @@
     <div v-if="step === 2">
       <h2 class="text-2xl font-bold mb-10">Upload your documents</h2>
       <div class="main-steps mx-auto mb-10">
-        <FileStep docName="Proof of Address" @submit="sendFile"/>
+        <FileStep docName="Proof of Address" @submit="saveFile" />
       </div>
     </div>
     <br />
@@ -17,6 +17,7 @@
 <script>
 import BasicData from "./BasicData.vue";
 import FileStep from "./FileStep.vue";
+import axios from "axios";
 
 export default {
   name: "Main",
@@ -39,12 +40,23 @@ export default {
     },
 
     saveForm(data) {
-      this.userData = data
-      this.nextStep()
+      this.userData = data;
+      this.nextStep();
     },
-    
-    sendFile(data) { 
-      console.log(data)
+
+    saveFile(file) {
+      this.documents.poa = file;
+      this.submitForm();
+    },
+
+    async submitForm() {
+      const formData = new FormData();
+      formData.append("image", this.documents.poa);
+      axios.post("https://localhost:5000", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
     },
   },
 };

@@ -9,9 +9,7 @@
         @change="preloadFile"
       />
     </div>
-    <button class="button mt-10" type="button" @click="submit">
-      Submit
-    </button>
+    <button class="button mt-10" type="button" @click="submit">Submit</button>
   </div>
 </template>
 
@@ -33,6 +31,11 @@ export default {
   },
 
   methods: {
+    preloadFile(event){
+      const file = event.target.files[0]
+      this.file = file
+    },
+    
     submit() {
       this.$emit("submit", this.file);
     },
