@@ -1,4 +1,5 @@
-export default function similarity(s1, s2) {
+export function similarity(s1, s2) {
+  console.log(s1, s2)
   var longer = s1;
   var shorter = s2;
   if (s1.length < s2.length) {
