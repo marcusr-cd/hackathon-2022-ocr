@@ -1,12 +1,14 @@
 import pytesseract
 from pytesseract.pytesseract import Output
-from io import BytesIO
 import json
 
 MIN_CONF = 10.0
 CONFIG_TESSERACT = '--tessdata-dir ../tessdata'
 LANG='eng'
-
+LAYOUTS = [
+  'bc-hydro-bill',
+  'bc-enerpro-bill'
+]
 class Object:
   def toJSON(self):
     return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
@@ -59,15 +61,16 @@ def getValues(layout, data):
         setattr(response, field, getValue(data, layout['fields'][field][i]))
   return response.toJSON()
 
-def postprocess(image):
-  f = open('layouts/bc-hydro-bill.json')
-  layout = json.loads(f.read())
-  f.close()
-  
+def postprocess(image): 
   data = pytesseract.image_to_data(image, lang=LANG, config=CONFIG_TESSERACT, output_type=Output.DICT)
   # text = pytesseract.image_to_string(image, lang=LANG, config=CONFIG_TESSERACT, output_type=Output.DICT)
 
-  if checkValidation(layout, data):
-    return getValues(layout, data)
+  for layoutFile in LAYOUTS:
+    f = open('layouts/' + layoutFile + '.json')
+    layout = json.loads(f.read())
+    f.close()
+    if checkValidation(layout, data):
+      return getValues(layout, data)
+
 
   return 'This file is not supported yet'
